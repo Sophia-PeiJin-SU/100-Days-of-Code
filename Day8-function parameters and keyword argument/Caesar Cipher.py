@@ -25,7 +25,7 @@ while run:
   text = input("Type your message:\n").lower()
   shift = int(input("Type the shift number:\n"))
 
-  shift = shift % 25
+  shift = shift % 26
 
   caesar(start_text = text, shift_amount = shift, cipher_direction = direction)
   run_again = input("Do you want to go again. Yes or No?\n").lower()
