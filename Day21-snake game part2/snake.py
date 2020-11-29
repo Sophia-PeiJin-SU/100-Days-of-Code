@@ -9,9 +9,9 @@ RIGHT = 0
 
 class Snake:
     def __init__(self):
-        self.segements = []
+        self.segments = []
         self.create_snake()
-        self.head = self.segements[0]
+        self.head = self.segments[0]
 
     def create_snake(self):
         for position in STARTING_POSITIONS:
@@ -22,16 +22,23 @@ class Snake:
         new_segment.color("white")
         new_segment.penup()
         new_segment.goto(position)
-        self.segements.append(new_segment)
+        self.segments.append(new_segment)
+
+    def reset(self):
+        for seg in self.segments:
+            seg.goto(1000, 1000)
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]
 
     def extend(self):
-        self.add_snake(self.segements[-1].position())
+        self.add_snake(self.segments[-1].position())
 
     def move(self):
-        for snake_num in range(len(self.segements) - 1, 0, -1):
-            new_x = self.segements[snake_num - 1].xcor()
-            new_y = self.segements[snake_num - 1].ycor()
-            self.segements[snake_num].goto(new_x, new_y)
+        for snake_num in range(len(self.segments) - 1, 0, -1):
+            new_x = self.segments[snake_num - 1].xcor()
+            new_y = self.segments[snake_num - 1].ycor()
+            self.segments[snake_num].goto(new_x, new_y)
         self.head.forward(MOVE_PACE)
 
     def up(self):
